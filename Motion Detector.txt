@@ -1,0 +1,27 @@
+const int motionpin=A0;
+const int ledpin=13;
+const int Speakpin=12; // ledpin,motionpin and Speakpin are not changed throughout the
+process
+int motionsensvalue=0;
+void setup() {
+// put your setup code here, to run once:
+
+19
+
+Serial.begin(9600);
+pinMode(ledpin, OUTPUT);
+pinMode(motionpin,INPUT);
+pinMode(Speakpin,OUTPUT);
+}
+void loop() {
+// put your main code here, to run repeatedly:
+motionsensvalue=analogRead(motionpin); // reads analog data from motion sensor
+if (motionsensvalue>=500){
+digitalWrite(ledpin,HIGH);
+tone(Speakpin,1000,100); //turns on led and Speaker
+}
+else {
+digitalWrite(ledpin,LOW); //turns led off led and Speaker
+noTone(Speakpin);
+}
+}
